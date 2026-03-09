@@ -1,8 +1,9 @@
 from fastapi import FastAPI, HTTPException
+from app.schemas import Post
 
 app = FastAPI()
 
-posts = {
+text_posts = {
     1: {"title": "ABC", "Description": "XYZ"},
     2: {"title": "FastAPI Guide", "Description": "Interview prep notes"},
     3: {"title": "CI/CD Basics", "Description": "Learning GitHub Actions"},
@@ -11,14 +12,21 @@ posts = {
 }
 
 @app.get("/posts")
-def get_posts(limit: int = None):
+def GetPosts(limit: int = None):
     if limit:
-        return list(posts.values())[:limit]
-    return posts
+        return list(text_posts.values())[:limit]
+    return text_posts
 
 
 @app.get("/posts/{id}")
-def get_posts_by_id(id: int):
-    if id not in posts:
+def GetPost(id: int):
+    if id not in text_posts:
         raise HTTPException(status_code=404, detail="Post not found")
-    return posts.get(id)
+    return text_posts.get(id)
+
+
+@app.post("/posts")
+def CreatePost(post: Post):
+    new_post = {"Title": post.Title, "Description": post.Description}
+    text_posts[max(text_posts.keys()) +1] = new_post
+    return new_post
