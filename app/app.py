@@ -11,7 +11,9 @@ posts = {
 }
 
 @app.get("/posts")
-def get_posts():
+def get_posts(limit: int = None):
+    if limit:
+        return list(posts.values())[:limit]
     return posts
 
 
