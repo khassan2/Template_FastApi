@@ -2,6 +2,12 @@ Pre-requisites
 UV-> https://docs.astral.sh/uv/getting-started/installation/
 CMD-> pip install uv
 
+Install Sqlite
+Run CMD as Admin -> winget install sqlite.sqlite
+
+Install Sqlite Db Browser
+RUN CMD as Admin -> winget install DBBrowserForSQLite.DBBrowserForSQLite for db browser
+
 ==============================================================
 
 STEPS to create project from scratch:
